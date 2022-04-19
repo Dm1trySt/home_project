@@ -1,0 +1,6 @@
+# Additional translations at https://github.com/heartcombo/devise/wiki/I18n
+
+ru:
+  messages:
+    blank: "не может быть пустым"
+    empty: "не может быть пустым"

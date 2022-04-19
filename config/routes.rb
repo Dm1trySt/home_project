@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users
+  get 'user/index'
+  get 'user/new'
+  get 'user/create'
+  get 'user/edit'
+  get 'user/update'
+  get 'user/complete'
+  get 'user/destroy'
   root to: 'welcome#index', as: 'home'
 
   resources :news

@@ -18,5 +18,10 @@ module ProjectHome
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.i18n.default_locale = :ru
+    config.i18n.fallbacks = [:en]
+
+    I18n.enforce_available_locales = true
+
   end
 end
