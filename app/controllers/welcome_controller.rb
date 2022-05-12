@@ -3,5 +3,4 @@ class WelcomeController < ApplicationController
     # Получение свежих новостей для home
     @news = News.latest
   end
-
 end

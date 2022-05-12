@@ -7,34 +7,30 @@ ruby "3.0.0"
 gem "rails", "~> 7.0.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+gem "sprockets-rails", '~> 3.4'
 
 # Аутентификация в rails-приложениях
-gem 'devise', '4.8.1'
+#gem 'devise', '4.8.1'
 
-# Нужен для пагинации
-gem 'will_paginate'
+gem 'rails-i18n', '~>7'
 
-# The original asset for Rails [https://github.com/rails/jquery-rails]
-# Нужен для понимания Jqery
-gem 'jquery-rails'
-
-# The original asset for Rails [https://github.com/heartcombo/simple_form]
-# Нужен для создания форм
-gem 'simple_form'
+# Use sqlite3 as the database for Active Record
+gem "sqlite3", "~> 1.4"
 
 # Use the Puma web server [https://github.com/puma/puma]
 #gem "puma", "~> 5.0"
 
-
-# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
+# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
+gem "jsbundling-rails"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+gem "turbo-rails", '~> 1.0.0'
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
+
+# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem "cssbundling-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
@@ -42,8 +38,30 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
 
-# Include database gems for the adapters found in the database
-# configuration file
+# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
+# gem "kredis"
+
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+# gem "bcrypt", "~> 3.1.7"
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', require: false
+
+# The original asset for Rails [https://github.com/heartcombo/simple_form]
+# Нужен для создания форм
+gem 'simple_form'
+
+gem 'bootstrap'
+
+# Use Sass to process CSS
+# gem "sassc-rails"
+
+# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
+# gem "image_processing", "~> 1.2"
+
 # Проверяет файл конфигурации БД и ставит соответствующий гем + сообщения об ошибках
 require 'erb'
 require 'yaml'
@@ -80,49 +98,9 @@ else
 end
 
 
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-# gem "kredis"
-
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-#gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
-
-# Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
-
-# Use Sass to process CSS
-# gem "sassc-rails"
-
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
-
-  # Не устанавливать в Gemfile, конфликтует с другими гемами.
-  #gem 'mailcatcher'
-
-  # The original asset for Rails [https://github.com/deivid-rodriguez/byebug]
-  # Нужен для дебага во время выполнения программы
-  gem "byebug"
-end
-
-group :assets do
-  # The original asset for Rails [https://github.com/rails/coffee-rails]
-  # Нужен для понимания ресурсов rails
-  gem 'coffee-rails', '~> 4.1'
-  # The original asset for Rails [https://github.com/seyhunak/twitter-bootstrap-rails]
-  # Нужен для создания форм и кнопок
-  gem  'twitter-bootstrap-rails'
-  gem 'sass-rails', '~> 5.0'
-  gem 'uglifier-rails'
-
-  # The original asset for Rails [https://github.com/rubyjs/therubyracer]
-  # Доступ к JS из ruby
-  gem 'therubyracer', platforms: :ruby
 end
 
 group :production do
@@ -141,9 +119,3 @@ group :development do
   # gem "spring"
 end
 
-group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
-  gem "webdrivers"
-end

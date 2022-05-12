@@ -1,44 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ProjectHome</title>
-    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag :application %>
+    <meta charset="UTF-8">
+    <title>TmbDisposal</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
-    <%= javascript_importmap_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
   </head>
 
   <body>
-  <div class="container main">
-      <div class="row">
-        <%= link_to "home", home_path %>
-        <ul class="navbar-nav pull-xs-right">
-          <!-- Пользователь залогинился? -->
-          <% if user_signed_in? %>
-            <!-- Выводим ссылку на выход -->
-            <%= link_to "Выход", destroy_user_session_path, data: { turbo_method: :delete} %>
-          <% else %>
-            <!-- Иначе выводим ссылки на вход и регистрацию -->
-            <%= link_to "Вход", new_user_session_path, class: "nav-link" %>
-            <!-- to_do -->
-            <%= link_to "Регистрация", new_user_registration_path, class: "nav-link" %>
-          <% end %>
-        </ul>
-        <p class="alert"><%= alert %></p>
-        <%= yield %>
+    <header class ="p-3 bg-dark text-white">
+      <div class ="container">
+        <nav class="d-flex flex-warp align-items-center justify-content-center justify-content-lg-start">
+         <%= link_to "home", home_path, class: 'nav-link px-2 text-white' %>
+        </nav>
       </div>
-    </div>
-  <div class="container main">
-    <div class="row">
-      <div class="col-md-12">
-        <% flash.each do |name,message| %>
-        <div class="alert <%= bootstrap_class_for(name) %>">
-          <button class="close" data-dismiss="alert">&times;</button>
-          <% message %>
-        </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
+    </header>
+    <main class ="container mt-3">
+      <%= yield %>
+    </main>
   </body>
 </html>

@@ -1,9 +1,5 @@
 class NewsController < ApplicationController
 
-  #def index
-  #   @news = News.order('created_at DESC')
-  # end
-
   def show
      @news = News.find(params[:id])
   end
@@ -14,9 +10,15 @@ class NewsController < ApplicationController
 
   def create
     @news = News.new news_params
-    @news.save
-
-    redirect_to home_path
+    respond_to do |format|
+      if @news.save
+        format.html { redirect_to home_path, notice: "Text" }
+        format.json { render :index, status: :created, locate: home_path}
+      else
+        format.html { render :new, status: :unprocessable_entity}
+        format.json { render json: @news.errors, status: :unprocessable_entity}
+      end
+    end
   end
 
   def edit
@@ -25,8 +27,15 @@ class NewsController < ApplicationController
 
   def update
     @news = News.find params[:id]
-    @news.update! news_params
-    redirect_to home_path
+    respond_to do |format|
+      if @news.update news_params
+        format.html { redirect_to home_path, notice: "Text" }
+        format.json { render :index, status: :created, locate: home_path}
+      else
+        format.html { render :edit, status: :unprocessable_entity}
+        format.json { render json: @news.errors, status: :unprocessable_entity}
+      end
+    end
   end
 
   def destroy

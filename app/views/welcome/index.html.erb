@@ -3,11 +3,15 @@
     <h1>Последние новости:</h1>
     <% if @news.present? %>
       <%@news.each do |news| %>
-        <%= render partial: 'news/news', object: news %>
+        <div class="card shadow mb-3">
+          <div class="card-body">
+            <%= render partial: 'news/news', object: news %>
+          </div>
+        </div>
         <hr />
       <% end %>
     <%end %>
-    <%= link_to "Добавить новость", new_news_path, class: 'btn btn-primary' %>
+    <%= link_to "Добавить новость", new_news_path, class: 'btn btn-lg btn-primary' %>
   </div>
 </div>
 

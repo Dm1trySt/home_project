@@ -1,13 +1,19 @@
 <div class="news">
   <p>
-    <span class="news"><%= news.title %></span>
+    <h4><span class="news"><%= news.title %></span></h4>
+
+  <time datetime="<%news.news_datetime_format %>">
+    <%=news.news_datetime_format %>
+  </time>
   </p>
   <p>
     <span class="description"><%= news.description %></span>
+    <div class="mt-8">
+      <%= link_to "Редактировать", edit_news_path(news), class: 'btn btn-primary' %> |
+      <%= link_to "Удалить", news_path(news), data: {
+        method: :delete,
+        confirm: "Удалить новость #{news.title} ?"
+      }, class: 'btn btn-danger' %>
+    </div>
   </p>
-  <li><%= link_to "Редактировать", edit_news_path(news), class: 'fa fa-pencil' %></li>
-  <li><%= link_to "Удалить", news_path(news), data: {
-    turbo_method: :delete,
-    turbo_confirm: "Удалить новость #{news.title}?"
-  } %></li>
 </div>

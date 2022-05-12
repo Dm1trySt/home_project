@@ -1,27 +1,9 @@
-# Версии
-rvm '1.29.12'
-
-ruby '3.0.0'
-
-rails '7.0.2.3'
-
-bundler '2.2.3'
-
-# Установка:
-Настройка twitter_bootstrap:
-
-bundle exec rails g bootstrap:install static
-
-Настройка simple_form:
-
-bundle exec rails g simple_form:install --bootstrap
-
-Для правильной работы кнопок "Удалить" выполнить :
-
-rails importmap:install 
-
-rails turbo:install stimulus:install
 # README
+
+
+#install
+yarn intall
+
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
