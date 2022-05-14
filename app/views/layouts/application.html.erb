@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>TmbDisposal</title>
+    <title><%= full_title(yield(:page_title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,14 +13,12 @@
   </head>
 
   <body>
-    <header class ="p-3 bg-dark text-white">
-      <div class ="container">
-        <nav class="d-flex flex-warp align-items-center justify-content-center justify-content-lg-start">
-         <%= link_to "home", home_path, class: 'nav-link px-2 text-white' %>
-        </nav>
-      </div>
-    </header>
+    <%= yield :main_menu %>
     <main class ="container mt-3">
+      <%flash.each do |k,v| %>
+        <%= tag.div v, class: "alert alert-#{k}", role: 'alert' %>
+      <%end %>
+
       <%= yield %>
     </main>
   </body>
