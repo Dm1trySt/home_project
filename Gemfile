@@ -10,7 +10,12 @@ gem "rails", "~> 7.0.0"
 gem "sprockets-rails", '~> 3.4'
 
 # Аутентификация в rails-приложениях
-#gem 'devise', '4.8.1'
+gem 'devise', '4.8.1'
+
+# Поддержка bootstrap для devise
+gem  'devise-bootstrap-views'
+
+gem 'devise-i18n'
 
 gem 'rails-i18n', '~>7'
 

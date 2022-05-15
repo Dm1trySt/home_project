@@ -5,6 +5,10 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <%= nav_tab 'Home', home_path, class: 'nav-link px-2', current_page: current_page %>
           <%= nav_tab 'Все новости', news_index_path, class: 'nav-link px-2', current_page: current_page %>
+          <b class="nav-link px-2 text-white">Вы вошли как:</b>
+          <%= link_to " #{current_user.email}", edit_user_registration_path, class: "nav-link px-2" %>
+          <!-- Выводим ссылку на выход -->
+          <%= link_to "Выход", destroy_user_session_path, data: { turbo_method: :delete}, class: "nav-link px-2" %>
         </ul>
       </nav>
     </div>
