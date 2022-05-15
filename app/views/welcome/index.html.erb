@@ -2,17 +2,10 @@
 <div class ="home_page">
   <div class="col-md-6">
     <h1>Последние новости:</h1>
+    <%= link_to "Добавить новость", new_news_path, class: 'btn btn-primary btn-lg mb-3' %>
     <% if @news.present? %>
-      <%@news.each do |news| %>
-        <div class="card shadow mb-3">
-          <div class="card-body">
-            <%= render partial: 'news/news', object: news %>
-          </div>
-        </div>
-        <hr />
-      <% end %>
+        <%= render partial: 'news/news', collection: @news, as: :news, locals: {news: @news} %>
     <%end %>
-    <%= link_to "Добавить новость", new_news_path, class: 'btn btn-lg btn-primary' %>
   </div>
 </div>
 

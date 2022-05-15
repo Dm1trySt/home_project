@@ -54,7 +54,11 @@ gem 'bootsnap', require: false
 # Нужен для создания форм
 gem 'simple_form'
 
+# Визуальная часть сайта
 gem 'bootstrap'
+
+# Пагинация
+gem 'pagy', '~> 5.10'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -101,6 +105,10 @@ end
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+
+
+  # Нужен для генерации данных для тестов
+  gem 'faker', '~> 2'
 end
 
 group :production do

@@ -4,7 +4,7 @@ class News < ApplicationRecord
 
   # Выгрузка из БД последних 5 записей
   def self.latest(count = 3)
-    News.order('created_at DESC').limit(count)
+    News.order(created_at: :desc).limit(count)
   end
 
   # Форматирование даты

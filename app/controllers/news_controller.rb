@@ -2,6 +2,10 @@ class NewsController < ApplicationController
 
   before_action :find_news!, only: %i[show edit update destroy]
 
+  def index
+    @pagy, @news = pagy(News.order(created_at: :desc), items: 5)
+  end
+
   def show
   end
 

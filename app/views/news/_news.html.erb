@@ -1,19 +1,22 @@
-<div class="news">
-  <p>
-    <h4><span class="news"><%= news.title %></span></h4>
+<div class="card shadow mb-3">
+  <div class="card-body">
+    <p>
+      <h4><span class="news"><%= sanitize news.title %></span></h4>
 
-  <time datetime="<%news.news_datetime_format %>">
-    <%=news.news_datetime_format %>
-  </time>
-  </p>
-  <p>
-    <span class="description"><%= news.description %></span>
-    <div class="mt-8">
-      <%= link_to "Редактировать", edit_news_path(news), class: 'btn btn-primary' %> |
-      <%= link_to "Удалить", news_path(news), data: {
-        method: :delete,
-        confirm: "Удалить новость #{news.title} ?"
-      }, class: 'btn btn-danger' %>
-    </div>
-  </p>
+      <time datetime="<%news.news_datetime_format %>">
+        <%=news.news_datetime_format %>
+      </time>
+    </p>
+    <p>
+      <span class="description"><%= truncate( sanitize(news.description), length: 150, omission:"...") {link_to "читать полностью", news_path(news)} %> </span>
+      <div class="mt-8">
+        <%= link_to "Редактировать", edit_news_path(news), class: 'btn btn-primary' %> |
+        <%= link_to "Удалить", news_path(news), data: {
+          method: :delete,
+          confirm: "Удалить новость #{news.title} ?"
+        }, class: 'btn btn-danger' %>
+      </div>
+    </p>
+  </div>
 </div>
+<hr />
