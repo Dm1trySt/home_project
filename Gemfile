@@ -12,6 +12,9 @@ gem "sprockets-rails", '~> 3.4'
 # Аутентификация в rails-приложениях
 gem 'devise', '4.8.1'
 
+# Добавление объектов для отображения к объектам
+gem 'draper', '~> 4.0'
+
 # Поддержка bootstrap для devise
 gem  'devise-bootstrap-views'
 
