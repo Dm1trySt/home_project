@@ -68,6 +68,13 @@ gem 'bootstrap'
 # Пагинация
 gem 'pagy', '~> 5.10'
 
+# Работа с архивом
+gem 'rubyzip', '~> 2'
+
+# Работа с файлами XLSX(запись)
+gem 'caxlsx', '~> 3.1'
+gem 'caxlsx_rails', '~> 0.6'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -114,9 +121,17 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 
-
   # Нужен для генерации данных для тестов
   gem 'faker', '~> 2'
+
+  # Отображение скорости страницы
+  gem 'rack-mini-profiler', '~>2.0'
+  # Для мониторинга потребления памяти процессором
+  gem 'memory_profiler'
+  # Проверяет стиль кода
+  gem 'rubocop', '~> 1.18', require: false
+  gem 'rubocop-rails', '~> 2.11', require: false
+  gem 'rubocop-performance', '~> 1.11', require: false
 end
 
 group :production do
