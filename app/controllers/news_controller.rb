@@ -1,12 +1,15 @@
 class NewsController < ApplicationController
 
   before_action :find_news!, only: %i[show edit update destroy]
+  include ApplicationHelper
 
   def index
     @pagy, @news = pagy(News.order(created_at: :desc), items: 5)
+    @news = @news.decorate
   end
 
   def show
+    @news = @news.decorate
   end
 
   def new
@@ -15,6 +18,7 @@ class NewsController < ApplicationController
 
   def create
     @news = News.new news_params
+    @news.user_id = current_user.id
     # Такой вариант редиректа или вывода ошибки использован т.к. turbo-rails не "увидит" сообщений об ошибке
     # и не выведет их для конечного пользователя
     respond_to do |format|

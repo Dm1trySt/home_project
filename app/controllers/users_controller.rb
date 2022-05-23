@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   #before_action :require_admin
+  include ApplicationHelper
 
   def index
     # Варианты ответов на разные форматы

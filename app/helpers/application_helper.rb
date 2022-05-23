@@ -5,6 +5,20 @@ module ApplicationHelper
     raw(pagy_bootstrap_nav obj) if obj.pages > 1
   end
 
+  # Аватар пользователя
+  def user_avatar(user, size=30)
+    if user.avatar.attached?
+
+      # Загрузка локальног оаватара
+      user.avatar.variant(resize_to_fill: [size, nil])
+    else
+      # Hash на из email пользователя + преобразование всего к нижнему регистру
+      email_hash = Digest::MD5.hexdigest user.email.strip.downcase
+      # Адрес gravatar
+      "https://www.gravatar.com/avatar/#{email_hash}.jpg?s=#{size}"
+    end
+  end
+
   def nav_tab(title, url, options = {})
     # Текущая страница
     current_page = options.delete :current_page

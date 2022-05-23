@@ -7,10 +7,14 @@
           <%= nav_tab 'Все новости', news_index_path, class: 'nav-link px-2', current_page: current_page %>
           <%= nav_tab 'Настройки', settings_path, class: 'nav-link px-2', current_page: current_page %>
         </ul>
-        <ul class ="d-flex justify-content-end mb-md-0">
-          <ul class="dropdown">
-              <%= link_to " #{current_user.name_or_email}", '',
-                          class: "nav-link px-2 dropdown-toggle text-white", data:{"bs-toggle": 'dropdown'} %>
+        <ul class ="nav col-12 col-lg-auto mb-2 mb-md-0">
+          <li class="dropdown">
+
+              <%= link_to '#',
+                          class: "nav-link px-2 dropdown-toggle text-white", data:{"bs-toggle": 'dropdown'} do %>
+                <%= image_tag user_avatar(current_user, 40), class: 'rounded' %>
+                <%= current_user.name_or_email %>
+              <% end %>
 
             <ul class="dropdown-menu">
               <li>
@@ -20,7 +24,7 @@
                 <%= link_to "Выход", destroy_user_session_path, data: { turbo_method: :delete}, class: "nav-link px-2 text-black" %>
               </li>
             </ul>
-          </ul>
+          </li>
           <!-- Выводим ссылку на выход -->
 
         </ul>

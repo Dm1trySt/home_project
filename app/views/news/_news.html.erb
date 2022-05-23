@@ -1,12 +1,13 @@
 <div class="card shadow mb-3">
-  <div class="card-body">
-    <p>
-      <h4><span class="news"><%= sanitize news.title %></span></h4>
-
-      <time datetime="<%news.news_datetime_format %>">
-        <%=news.news_datetime_format %>
+  <section class="card-header">
+    <%= image_tag user_avatar(news.user, 40), class: 'rounded'%>
+    <%= news.user.name_or_email %>
+      <time  datetime="<%news.formatted_created_at %>">
+        <%=news.formatted_created_at %>
       </time>
-    </p>
+  </section>
+  <div class="card-body">
+    <h4><span class="news"><%= sanitize news.title %></span></h4>
     <p>
       <span class="description"><%= truncate( sanitize(news.description), length: 150, omission:"...") {link_to "читать полностью", news_path(news)} %> </span>
       <div class="mt-8">
