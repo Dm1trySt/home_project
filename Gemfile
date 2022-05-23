@@ -12,7 +12,9 @@ gem "sprockets-rails", '~> 3.4'
 # Аутентификация в rails-приложениях
 gem 'devise', '4.8.1'
 
-# Добавление объектов для отображения к объектам
+gem 'image_processing'
+gem 'gravatar_image_tag'
+# Добавление объектов для отображения к объектам (декорации)
 gem 'draper', '~> 4.0'
 
 # Поддержка bootstrap для devise
