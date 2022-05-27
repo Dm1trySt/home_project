@@ -14,7 +14,7 @@
   <% if @project.id.present? %>
     <div class="mb-3">
       <div class="col-sm-10">
-        <%= f.input :project_status_id, label: "Статус:", collection: ProjectStatus.all, label_method: :name,
+        <%= f.input :project_status_id, label: "Статус:", collection: @project_statuses, label_method: :name,
                     value_method: :id, :include_blank => false %>
       </div>
     </div>

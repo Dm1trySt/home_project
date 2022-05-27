@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
     search_project_by_name
     search_project_by_status
     @projects = @projects.decorate
+    @project_statuses = ProjectStatus.actual_project_statuses
   end
 
   def show
@@ -32,11 +33,10 @@ class ProjectsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity}
       end
     end
-
   end
 
   def edit
-
+    @project_statuses = ProjectStatus.actual_project_statuses
   end
 
   def update

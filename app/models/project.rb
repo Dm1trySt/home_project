@@ -9,14 +9,4 @@ class Project < ApplicationRecord
     STATUS_CLOSED     = 2
     STATUS_ARCHIVED   = 3
 
-    PROJECT_STATUS = [
-      ['Открыт', 1],
-      ['Закрыт', 2],
-      ['В архиве', 3]
-  ]
-
-  def project_statuses
-    @project_statuses = ProjectStatus.all
-  end
-
 end

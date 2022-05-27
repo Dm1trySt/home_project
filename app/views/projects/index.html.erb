@@ -1,19 +1,23 @@
 <% provide :page_title, 'Проекты' %>
 <% currently_at 'Проекты' %>
 <div class ="projects">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <h1>Проекты:</h1>
     <%= link_to "Создать проект", new_project_path, class: 'btn btn-primary btn-lg mb-3' %>
     <%== pagy_bootstrap_nav @pagy %>
 
-    <form method="GET">
-      <input type="text" name="search_project" >
-      <select name="filter_status">
-        <% ProjectStatus.all.each do |status| %>
-          <option value="<%= status.id %>"><%= status.name %></option>
+    <form class="mb-4" method="GET">
+      <span>название проекта:</span>
+      <input  type="text" name="search_project" >
+      <span>статус:</span>
+      <select class="btn btn-sm btn-outline-secondary " name="filter_status" >
+
+        <% @project_statuses.each do |status| %>
+
+           <option  value="<%= status.id %>"><%= "#{status.name}" %></option>
         <% end %>
       </select>
-      <input type="submit" value="Искать проект">
+        <input class="btn btn-sm btn-outline-secondary me-md-2" type="submit" value="Искать проект">
     </form>
 
     <% if @projects.present? %>

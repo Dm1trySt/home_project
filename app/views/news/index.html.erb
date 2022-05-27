@@ -1,7 +1,7 @@
 <% provide :page_title, 'Все новости' %>
 <% currently_at 'Все новости' %>
 <div class ="news">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <h1>Все новости:</h1>
     <%= link_to "Добавить новость", new_news_path, class: 'btn btn-primary btn-lg mb-3' %>
     <%== pagy_bootstrap_nav @pagy %>
