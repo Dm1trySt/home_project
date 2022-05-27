@@ -1,0 +1,3 @@
+class ProjectStatusesController < ApplicationController
+
+end

@@ -1,0 +1,34 @@
+<% provide :page_title, 'News edit' %>
+<% currently_at 'News edit' %>
+<div class="md-4">
+  <div class="card shadow mb-3">
+    <section class="card-header">
+      <%= image_tag user_avatar(@project.user, 40), class: 'rounded' %>
+      <%= @project.user.name_or_email %>
+      <time  datetime="<%@project.formatted_created_at %>">
+        <%= @project.formatted_created_at %>
+      </time>
+    </section>
+
+    <div class="card-body">
+      <h4><span class="news"><%= " Тема: #{sanitize @project.name}" %></span></h4>
+        <hr/>
+        <span class="description" ><%= " статус: #{@project.project_status.name}" %></span>
+        <br>
+        <p>Описание:</p>
+        <span class="description"><%= sanitize @project.description %></span>
+        <hr/>
+
+      <div class="mt-8">
+        <%= link_to "Задачи", edit_project_path(@project), class: 'btn btn-primary' %> |
+        <%= link_to "Редактировать", edit_project_path(@project), class: 'btn btn-primary' %> |
+        <%= link_to "Удалить", project_path(@project), data: {
+          method: :delete,
+          confirm: "Удалить новость #{@project.description} ?"
+        }, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>
+
+</div>
+

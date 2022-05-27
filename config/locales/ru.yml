@@ -36,6 +36,10 @@ ru:
       news:
         description: "Описание"
         title: "Тема"
+      project:
+        description: "Описание"
+        name: "Название"
+        homepage: "Сайт организации"
 
 
 
