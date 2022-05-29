@@ -1,5 +1,4 @@
 class ProjectStatus < ApplicationRecord
-  has_many :projects, dependent: :destroy
 
   # Получение сатутсов проекта в формате [name, id]
   def self.actual_project_statuses

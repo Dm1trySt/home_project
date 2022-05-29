@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_26_215622) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_29_200904) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -37,6 +37,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_215622) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "issues", charset: "utf8", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.string "title", null: false
+    t.text "description", null: false
+    t.integer "status_id", default: 1, null: false
+    t.date "start_date"
+    t.datetime "closed_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_issues_on_project_id"
+    t.index ["status_id"], name: "index_issues_on_status_id"
+    t.index ["title"], name: "index_issues_on_title"
+  end
+
+  create_table "journals", charset: "utf8", force: :cascade do |t|
+    t.text "body"
+    t.bigint "issue_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["issue_id"], name: "index_journals_on_issue_id"
   end
 
   create_table "news", charset: "utf8", force: :cascade do |t|
@@ -94,6 +116,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_215622) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "issues", "projects"
+  add_foreign_key "journals", "issues"
   add_foreign_key "news", "users"
   add_foreign_key "projects", "project_statuses"
   add_foreign_key "projects", "users"

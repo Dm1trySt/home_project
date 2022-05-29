@@ -8,12 +8,11 @@
 
     <form class="mb-4" method="GET">
       <span>название проекта:</span>
-      <input  type="text" name="search_project" >
+      <input  type="text" name="project_name" >
       <span>статус:</span>
-      <select class="btn btn-sm btn-outline-secondary " name="filter_status" >
-
+      <select class="btn btn-sm btn-outline-secondary " name="status_id" >
+        <option value="">Все</option>
         <% @project_statuses.each do |status| %>
-
            <option  value="<%= status.id %>"><%= "#{status.name}" %></option>
         <% end %>
       </select>

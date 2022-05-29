@@ -20,7 +20,8 @@
         <hr/>
 
       <div class="mt-8">
-        <%= link_to "Задачи", edit_project_path(@project), class: 'btn btn-primary' %> |
+        <%= link_to "Задачи", project_issues_path(@project), class: 'btn btn-primary' %> |
+        <%= link_to "Назад", projects_path, class: 'btn btn-primary' %> |
         <%= link_to "Редактировать", edit_project_path(@project), class: 'btn btn-primary' %> |
         <%= link_to "Удалить", project_path(@project), data: {
           method: :delete,

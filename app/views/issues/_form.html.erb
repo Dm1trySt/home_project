@@ -1,0 +1,17 @@
+<%= simple_form_for [@project, @issue] do |f| %>
+  <div class="mb-3">
+    <div class="col-sm-10">
+      <%= f.input :title, label: "Тема" %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <div class="col-sm-10">
+      <%= f.input :description, label: "Описание" %>
+    </div>
+  </div>
+
+  <%= f.button :submit, "Сохранить", class: 'btn btn-primary'%>
+  <%= link_to "Назад", project_issue_path(@project, @issue), class: 'btn btn-primary' %>
+<% end %>
+

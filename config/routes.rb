@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   get '/settings', to: 'settings#index'
   resources :news
   resources :users
-  resources :projects
+  resources :projects do
+    resources :issues do
+      resources :journals
+    end
+  end
 end
