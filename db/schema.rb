@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_29_200904) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_03_203348) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,7 +39,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_29_200904) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "issue_statuses", charset: "utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "issues", charset: "utf8", force: :cascade do |t|
+    t.bigint "author_id", null: false
+    t.bigint "assigned_to_id"
     t.bigint "project_id", null: false
     t.string "title", null: false
     t.text "description", null: false
@@ -48,6 +56,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_29_200904) do
     t.datetime "closed_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["assigned_to_id"], name: "index_issues_on_assigned_to_id"
+    t.index ["author_id"], name: "index_issues_on_author_id"
     t.index ["project_id"], name: "index_issues_on_project_id"
     t.index ["status_id"], name: "index_issues_on_status_id"
     t.index ["title"], name: "index_issues_on_title"
@@ -58,7 +68,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_29_200904) do
     t.bigint "issue_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["issue_id"], name: "index_journals_on_issue_id"
+    t.index ["user_id"], name: "index_journals_on_user_id"
   end
 
   create_table "news", charset: "utf8", force: :cascade do |t|
@@ -117,7 +129,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_29_200904) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "issues", "projects"
+  add_foreign_key "issues", "users", column: "assigned_to_id"
+  add_foreign_key "issues", "users", column: "author_id"
   add_foreign_key "journals", "issues"
+  add_foreign_key "journals", "users"
   add_foreign_key "news", "users"
   add_foreign_key "projects", "project_statuses"
   add_foreign_key "projects", "users"

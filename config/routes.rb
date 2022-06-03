@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   resources :news
   resources :users
   resources :projects do
-    resources :issues do
-      resources :journals
-    end
+    resources :issues, :only => [:index, :new, :create]
+  end
+  resources :issues, except:  [:new, :create]  do
+    resources :journals
   end
 end

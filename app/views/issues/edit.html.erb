@@ -1,7 +1,8 @@
-<% provide :page_title, 'Редактирование проекта' %>
-<% currently_at 'Редактирование проекта' %>
+<% provide :page_title, 'Редактирование задачи' %>
+<% currently_at 'Редактирование задачи' %>
 <div class="md-4">
-  <h1>Редактирование проекта</h1>
+  <h1>Редактирование задачи</h1>
 </div>
 
 <%= render 'form' %>
+<%= link_to "Назад", issue_path(@issue), class: 'btn btn-primary my-3' %>

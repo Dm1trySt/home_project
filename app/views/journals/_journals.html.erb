@@ -1,0 +1,15 @@
+<%= simple_form_for [@issue, @journal] do |f| %>
+  <div class="mb-3">
+    <div class="mb-3">
+      <div class="col-md-12">
+        <%= f.input :body, label: "Комментарий", class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <div class="col-md-12">
+        <%= f.button :submit, "Сохранить комментарий", class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+<% end %>

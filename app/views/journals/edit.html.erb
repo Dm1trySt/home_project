@@ -1,0 +1,8 @@
+<% provide :page_title, 'Редактирование комментария' %>
+<% currently_at 'Редактирование комментария' %>
+<div class="md-4">
+  <h1>Редактирование комментария</h1>
+</div>
+
+<%= render 'form' %>
+<%= link_to "Назад", issue_path(@issue), class: 'btn btn-primary my-3' %>

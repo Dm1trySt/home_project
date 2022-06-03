@@ -3,6 +3,8 @@
 <div class="md-4">
   <div class="card shadow mb-3">
     <section class="card-header">
+      <%= image_tag user_avatar( @issue.author, 40), class: 'rounded'%>
+      <%= @issue.author.name_or_email %>
       <time  datetime="<%@issue.formatted_created_at %>">
         <%= @issue.formatted_created_at %>
       </time>
@@ -13,22 +15,58 @@
       <hr/>
       <h4><span class="title"><%= " Тема: #{sanitize @issue.title}" %></span></h4>
         <hr/>
-        <span class="status" ><%= " статус: #{@issue.status_id}" %></span>
-        <br>
+        <span class="status" ><%= " статус: #{@issue.status.name}" %></span>
+        <hr/>
+        <span class="status" >
+          <%= " назначен:"%>
+          <%= image_tag user_avatar(@issue.assigned_to, 40), class: 'rounded' %>
+          <%=" #{@issue.assigned_to.name_or_email}"%>
+        </span>
+        <hr/>
         <p>Описание:</p>
         <span class="description"><%= sanitize @issue.description %></span>
         <hr/>
 
       <div class="mt-8">
         <%= link_to "Назад", project_issues_path(@project), class: 'btn btn-primary' %> |
-        <%= link_to "Редактировать",  edit_project_issue_path(@project, @issue), class: 'btn btn-primary' %> |
-        <%= link_to "Удалить", project_issue_path(@project, @issue), data: {
+        <%= link_to "Редактировать",  edit_issue_path(@issue), class: 'btn btn-primary' %> |
+        <%= link_to "Удалить", issue_path(@issue), data: {
           method: :delete,
           confirm: "Удалить новость #{@issue.description} ?"
-        }, class: 'btn btn-danger' %>
+        }, class: 'btn btn-danger' %> |
+        <%= link_to "Добавить комментарий",  new_issue_journal_path(@issue), class: 'btn btn-primary' %>
       </div>
     </div>
   </div>
-
 </div>
+
+<% if @journals.present? %>
+
+  <% @journals.each do |journal| %>
+    <div class="card shadow mb-3">
+      <section class="card-header">
+        <%= image_tag user_avatar( journal.user, 40), class: 'rounded'%>
+        <%= journal.user.name_or_email %>
+        <time  datetime="<%journal.formatted_created_at %>">
+          <%= journal.formatted_created_at %>
+        </time>
+
+        <%= link_to "Удалить", issue_journal_path(@issue,journal), data: {
+          method: :delete,
+          confirm: "Удалить комментарий ?"
+        }, class: 'btn btn-danger btn-xs' %>|
+
+        <%= link_to "Редактировать",  edit_issue_journal_path(@issue,journal), class: 'btn btn-primary' %>
+      </section>
+
+      <div class="card-body">
+          <%= journal.body %>
+      </div>
+    </div>
+
+  <% end %>
+  <%= pagination(@pagy) %>
+<%end %>
+
+
 

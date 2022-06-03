@@ -1,11 +1,13 @@
 <div class="card shadow mb-3">
   <section class="card-header">
+    <%= image_tag user_avatar( issue.author, 40), class: 'rounded'%>
+    <%= issue.author.name_or_email %>
     <time  datetime="<%issue.formatted_created_at %>">
       <%=issue.formatted_created_at %>
     </time>
   </section>
   <div class="card-body">
-    <h1><span class="issue"><%= link_to "#{sanitize issue.title}", project_issue_path(@project, issue), class: 'px-2 text-black' %></span></h1>
+    <h1><span class="issue"><%= link_to "#{sanitize issue.title}", issue_path(issue), class: 'px-2 text-black' %></span></h1>
   </div>
 </div>
 <hr/>

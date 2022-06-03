@@ -1,6 +1,7 @@
 module ApplicationHelper
   include Pagy::Frontend
 
+  # Отображать пагинацию, если кол-во страниц больше 1
   def pagination(obj)
     raw(pagy_bootstrap_nav obj) if obj.pages > 1
   end

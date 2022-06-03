@@ -1,0 +1,8 @@
+<% provide :page_title, 'Новый комментарий' %>
+<% currently_at 'Новый комментарий' %>
+<div class="md-4">
+  <h1>Создание комментария</h1>
+</div>
+
+<%= render 'journals'%>
+<%= link_to "Назад", issue_path(@issue), class: 'btn btn-primary my-3' %>
