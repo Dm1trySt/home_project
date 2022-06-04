@@ -1,0 +1,7 @@
+<% provide :page_title, 'Редактирование проекта' %>
+<% currently_at 'Редактирование проекта' %>
+<div class="md-4">
+  <h1> <%= "Редактирование профиля пользователя #{@user.name_or_email}" %></h1>
+</div>
+
+<%= render 'form' %>

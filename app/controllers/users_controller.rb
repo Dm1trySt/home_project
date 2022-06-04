@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   #before_action :require_admin
   include ApplicationHelper
 
+  before_action :find_user!, only: %i[edit update destroy]
+
   def index
     # Варианты ответов на разные форматы
     respond_to do |format|
@@ -11,6 +13,23 @@ class UsersController < ApplicationController
       end
       # Вариант ответа на формат zip
       format.zip { respond_with_zipped_users }
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    # Такой вариант редиректа или вывода ошибки использован т.к. turbo-rails не "увидит" сообщений об ошибке
+    # и не выведет их для конечного пользователя
+    respond_to do |format|
+      if @user.update user_params
+        # Флэш уведомление при успешном обновлении записи
+        flash[:success]= "Пользователь #{@user.name_or_email} обновлен"
+        format.html { redirect_to users_path}
+      else
+        format.html { render :edit, status: :unprocessable_entity}
+      end
     end
   end
 
@@ -32,5 +51,15 @@ class UsersController < ApplicationController
     compressed_filestream.rewind
 
     send_data compressed_filestream.read, filename: 'users.zip'
+  end
+
+  def find_user!
+    @user = User.find(params[:id])
+    @user = @user.decorate
+  end
+
+  # Проверка получение нужных параметров
+  def user_params
+    params.require(:user).permit([:name, :admin, :status])
   end
 end

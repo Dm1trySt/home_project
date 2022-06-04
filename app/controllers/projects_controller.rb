@@ -68,7 +68,7 @@ class ProjectsController < ApplicationController
     params.require(:project).permit([:name, :description, :homepage, :project_status_id])
   end
 
-  # Поиск текущей нововсти
+  # Поиск текущего проекта
   def find_project!
     @project = Project.find(params[:id])
   end

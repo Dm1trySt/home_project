@@ -12,7 +12,7 @@
       <span>статус:</span>
       <select class="btn btn-sm btn-outline-secondary " name="status_id" >
         <option value="">Все</option>
-        <% @project_statuses.each do |status| %>
+        <% ProjectStatus.all.each do |status| %>
            <option  value="<%= status.id %>"><%= "#{status.name}" %></option>
         <% end %>
       </select>

@@ -1,0 +1,23 @@
+<%= simple_form_for @user do |f| %>
+  <div class="mb-3">
+    <div class="col-sm-10">
+      <%= f.input :name %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <div class="col-sm-10">
+      <%= f.input :admin %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <div class="col-sm-10">
+      <%= f.input :status %>
+    </div>
+  </div>
+
+  <%= f.button :submit, "Сохранить", class: 'btn btn-primary'%>
+  <%= link_to "Назад", users_path, class: 'btn btn-primary' %>
+<% end %>
+

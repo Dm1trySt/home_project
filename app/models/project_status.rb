@@ -1,5 +1,6 @@
 class ProjectStatus < ApplicationRecord
 
+  has_many :status, class_name: 'Project', dependent: :destroy
   STATUS_ACTIVE_ID     = 1 # Активный
   STATUS_CLOSED_ID     = 2 # Закрыт
   STATUS_ARCHIVED_ID   = 3 # В архиве

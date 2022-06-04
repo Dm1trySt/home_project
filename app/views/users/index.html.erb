@@ -12,24 +12,18 @@
   <thead>
   <tr>
     <th scope="col">#</th>
-    <th scope="col">Name</th>
+    <th scope="col">Имя</th>
     <th scope="col">Email</th>
-    <th scope="col">Created at</th>
-    <th scope="col">Updated at</th>
-    <th scope="col">Admin</th>
+    <th scope="col">Создан</th>
+    <th scope="col">Обнавлен</th>
+    <th scope="col">Пользователь админ?</th>
+    <th scope="col">Управление пользователем</th>
   </tr>
   </thead>
   <tbody>
-  <% @users.each do |user| %>
-    <tr>
-      <td><%=user.id %></td>
-      <td><%=user.name %></td>
-      <td><%=user.email %></td>
-      <td><%=user.created_at.to_date %></td>
-      <td><%=user.updated_at.to_date %></td>
-      <td><%=user.admin %></td>
-    </tr>
-  <% end %>
+  <% if @users.present? %>
+    <%= render partial: 'users', collection: @users, as: :user, locals: {user: @users} %>
+  <%end %>
   </tbody>
 </table>
 
