@@ -51,12 +51,12 @@
           <%= journal.formatted_created_at %>
         </time>
 
-        <%= link_to "Удалить", issue_journal_path(@issue,journal), data: {
+        <%= link_to "Удалить", journal_path(journal), data: {
           method: :delete,
           confirm: "Удалить комментарий ?"
         }, class: 'btn btn-danger btn-xs' %>|
 
-        <%= link_to "Редактировать",  edit_issue_journal_path(@issue,journal), class: 'btn btn-primary' %>
+        <%= link_to "Редактировать",  edit_journal_path(journal), class: 'btn btn-primary' %>
       </section>
 
       <div class="card-body">

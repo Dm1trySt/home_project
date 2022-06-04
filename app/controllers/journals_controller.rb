@@ -1,4 +1,5 @@
 class JournalsController < ApplicationController
+  before_action :set_journal!, except: [:new, :create]
   before_action :set_issue!
 
   def new
@@ -7,7 +8,7 @@ class JournalsController < ApplicationController
   end
 
   def create
-    @journal = @issue.journals.build issue_params
+    @journal = @issue.journals.build journal_params
     @journal.user_id = current_user.id
     @journal = @journal.decorate
 
@@ -21,23 +22,24 @@ class JournalsController < ApplicationController
   end
 
   def edit
-    @journal = @issue.journals.find params[:id]
   end
 
   def update
-    @journal = @issue.journals.find params[:id]
-       if @journal.update issue_params
-         # Флэш уведомление при успешном обновлении записи
-         flash[:success]= "Комментарий обновлен"
-         redirect_to issue_path(@issue)
-       else
-         redirect_to edit_issue_journal_path(@issue,@journal), status: :unprocessable_entity
-       end
+    # Такой вариант редиректа или вывода ошибки использован т.к. turbo-rails не "увидит" сообщений об ошибке
+    # и не выведет их для конечного пользователя
+    respond_to do |format|
+      if @journal.update journal_params
+        # Флэш уведомление при успешном обновлении записи
+        flash[:success]= "Комментарий обновлен"
+        format.html { redirect_to issue_path(@issue)}
+      else
+        format.html { render :edit, status: :unprocessable_entity}
+      end
+    end
   end
 
   def destroy
-    journal = @issue.journals.find params[:id]
-    if journal.destroy
+    if @journal.destroy
       flash[:success]= "Комментарий удален"
       redirect_to issue_path(@issue)
     end
@@ -46,12 +48,18 @@ class JournalsController < ApplicationController
   private
 
   # Проверка получение нужных параметров
-  def issue_params
+  def journal_params
     params.require(:journal).permit([:body])
+  end
+
+  # Поиск текущего комментария
+  def set_journal!
+    @journal = Journal.find params[:id]
+    @journal.decorate
   end
 
   # Поиск текущей задачи
   def set_issue!
-    @issue = Issue.find params[:issue_id]
+    @issue = params[:issue_id].present? ? (Issue.find params[:issue_id]) : @journal.issue
   end
 end
