@@ -1,0 +1,15 @@
+<% currently_at 'Анализ содержания металлов' %>
+<% provide :page_title, 'Анализ содержания металлов' %>
+
+<h1 class="mb-4">Анализ содержания металлов по проекту:</h1>
+<% @project_names.each do |project_name| %>
+  <div class="mb-3">
+    <div class="col-sm-10">
+      <h2><%= link_to "#{project_name}", metal_content_analysis_report_path(project_name), class: 'nav-link px-2 text-black' %></h2>
+    </div>
+  </div>
+  <hr/>
+<% end %>
+<%= link_to "Назад к отчетам", reports_path, class: 'btn btn-primary my-3' %>
+
+

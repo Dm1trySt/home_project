@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_03_203348) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_05_182831) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -73,6 +73,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_03_203348) do
     t.index ["user_id"], name: "index_journals_on_user_id"
   end
 
+  create_table "metal_content_analyses", charset: "utf8", force: :cascade do |t|
+    t.text "project_name", null: false
+    t.bigint "project_id", null: false
+    t.date "create_date", null: false
+    t.text "data", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "part_name"
+    t.index ["project_id"], name: "index_metal_content_analyses_on_project_id"
+  end
+
   create_table "news", charset: "utf8", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -133,6 +144,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_03_203348) do
   add_foreign_key "issues", "users", column: "author_id"
   add_foreign_key "journals", "issues"
   add_foreign_key "journals", "users"
+  add_foreign_key "metal_content_analyses", "projects"
   add_foreign_key "news", "users"
   add_foreign_key "projects", "project_statuses"
   add_foreign_key "projects", "users"

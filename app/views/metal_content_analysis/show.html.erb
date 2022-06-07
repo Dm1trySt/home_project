@@ -1,0 +1,49 @@
+<% currently_at 'Отчеты' %>
+<% provide :page_title, 'Анализ содержания металлов' %>
+
+<h1>
+  Анализ содержания металлов по проекту <%= link_to "#{sanitize @current_project.name}", project_path(@current_project),
+                                  class: 'px-2 text-black' %>:
+</h1>
+
+<div class="btn-group mb-3">
+  <%= link_to 'Download zipped XLSX', users_path(format: :zip), class: 'btn btn-secondary' %>
+</div>
+
+<form class="mb-4" method="GET">
+  <span>Выберите дату отчета:</span>
+  <select class="btn btn-sm btn-outline-secondary " name="report_date" >
+    <option value="">Последняя</option>
+    <% @all_date.each do |date| %>
+      <option  value="<%= date %>"><%= "#{date}" %></option>
+    <% end %>
+  </select>
+  <input class="btn btn-sm btn-outline-secondary me-md-2" type="submit" value="Искать отчет">
+</form>
+
+<table class="table table-striped table-hover">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Название проекта</th>
+    <th scope="col">Название детали </th>
+    <th scope="col">Кол-во металлов</th>
+    <th scope="col">Дата создания </th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @metal_content_analysises.present? %>
+    <% @metal_content_analysises.each do |metal_content_analysis| %>
+        <tr>
+          <th scope="row"><%= metal_content_analysis.id %></th>
+          <td><%=metal_content_analysis.project_name %></td>
+          <td><%=metal_content_analysis.part_name  %></td>
+          <td><%= metal_content_analysis.data%></td>
+          <td><%=metal_content_analysis.create_date .to_date %></td>
+        </tr>
+    <%end %>
+  <%end %>
+  </tbody>
+</table>
+
+
