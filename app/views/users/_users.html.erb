@@ -2,9 +2,10 @@
   <th scope="row"><%= user.id %></th>
   <td><%=user.name %></td>
   <td><%=user.email %></td>
+  <td><%=user.role.name %></td>
+  <td><%=user.admin? ? "да" : "нет" %></td>
   <td><%=user.created_at.to_date %></td>
   <td><%=user.updated_at.to_date %></td>
-  <td><%=user.admin %></td>
   <td>
     <%= link_to "Редактировать", edit_user_path(user), class: 'btn btn-secondary' %>
     <%= link_to "Удалить", user_path(user), data: {

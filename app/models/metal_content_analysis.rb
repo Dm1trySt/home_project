@@ -21,21 +21,20 @@ class MetalContentAnalysis < ApplicationRecord
       data_report = data_report[1...-1].split(',').map {|e| e.to_i}
       data_report.each do |meaning|
         case
-        when meaning = 91
+        when meaning == 91
           serebro << meaning
-        when meaning = 88
+        when meaning == 88
           gold << meaning
-        when meaning = 61
+        when meaning == 61
           platina << meaning
         end
-        serebro = serebro.size.to_f/1000
-        serebro = "#{serebro}% - содержания серебра\n"
-        gold = gold.size.to_f/10000
-        gold = "#{gold}% - содержания золота\n"
-        platina = platina.size.to_f/10000
-        platina = "#{platina}% - содержания платины\n"
       end
-
-     data = "#{serebro}, #{gold}, #{platina}"
+    serebro = serebro.size.to_f/100 if serebro.present?
+    gold = gold.size.to_f/1000 if gold.present?
+    platina = platina.size.to_f/1000 if platina.present?
+    serebro = serebro.present? ?  " #{serebro}% - содержания серебра\n" :"0.0% - содержания серебра\n"
+    gold = gold.present? ? " #{gold}% - содержания золота\n" : "0.0% - содержания золота\n"
+    platina = platina.present? ? " #{platina}% - содержания платины\n" : "0.0% - содержания платины\n"
+     "#{serebro}, #{gold}, #{platina}"
   end
 end

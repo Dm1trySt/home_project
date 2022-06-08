@@ -5,6 +5,12 @@ class User < ApplicationRecord
   has_many :assigned_tos, class_name: 'Issue', dependent: :destroy
   has_many :authors, class_name: 'Issue', dependent: :destroy
   has_many :journals, dependent: :destroy
+  belongs_to :role
+
+  enum role: {guest: 1, director: 2, replacement_director: 3, commercial_director: 4, manager: 5, head_accountant: 6,
+              accountant: 7, hr: 8, head_engineer: 9, engineer: 10, technician: 11  }, _suffix: :role
+
+  #enum admin: {true: 1, false:0}, _suffix: :admin
 
   has_one_attached :avatar
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_05_182831) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_08_154603) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -51,7 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_05_182831) do
     t.bigint "project_id", null: false
     t.string "title", null: false
     t.text "description", null: false
-    t.integer "status_id", default: 1, null: false
+    t.bigint "status_id", default: 1, null: false
     t.date "start_date"
     t.datetime "closed_on"
     t.datetime "created_at", null: false
@@ -75,12 +75,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_05_182831) do
 
   create_table "metal_content_analyses", charset: "utf8", force: :cascade do |t|
     t.text "project_name", null: false
+    t.text "data", null: false, collation: "utf8mb4_bin"
     t.bigint "project_id", null: false
     t.date "create_date", null: false
-    t.text "data", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "part_name"
+    t.text "part_name", null: false
     t.index ["project_id"], name: "index_metal_content_analyses_on_project_id"
   end
 
@@ -115,6 +115,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_05_182831) do
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
+  create_table "roles", charset: "utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -127,14 +133,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_05_182831) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "role_id", default: 1, null: false
     t.string "name", null: false
-    t.boolean "admin", default: false, null: false
-    t.integer "status", default: 1, null: false
+    t.boolean "admin", default: false
+    t.boolean "active", default: true
+    t.index ["active"], name: "index_users_on_active"
     t.index ["admin"], name: "index_users_on_admin"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["status"], name: "index_users_on_status"
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

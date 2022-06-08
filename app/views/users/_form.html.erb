@@ -1,19 +1,25 @@
 <%= simple_form_for @user do |f| %>
   <div class="mb-3">
     <div class="col-sm-10">
-      <%= f.input :name %>
+      <%= f.input :name, label: "Имя пользователя" %>
     </div>
   </div>
 
   <div class="mb-3">
     <div class="col-sm-10">
-      <%= f.input :admin %>
+      <%= f.select :role, Role.all.collect {|role| [ role.name, role.id ] } %>
     </div>
   </div>
 
   <div class="mb-3">
     <div class="col-sm-10">
-      <%= f.input :status %>
+      <%= f.input :admin, label: "Пользователь администратор ?" %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <div class="col-sm-10">
+      <%= f.input :active, label: "Учетная запись активная?" %>
     </div>
   </div>
 
