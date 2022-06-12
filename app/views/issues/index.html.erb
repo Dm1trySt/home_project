@@ -9,28 +9,18 @@
     <% end %>
     <%= pagination(@pagy) %>
 
-    <div class="col-md-4 my-3">
-      <%= simple_form_for :issue, method: :get  do |f| %>
-        <div class="mb-2">
-          <div class="col-sm-10">
-            <%= f.input :status_id, collection: IssueStatus.all, label_method: :name, value_method: :id,label: "Выбор статуса", required: false %>
-          </div>
-
-        </div>
-        <div class="mb-2">
-          <div class="col-sm-10">
-            <%= f.input :title, label: "Тема", required: false %>
-          </div>
-        </div>
-
-        <div class="mb-2">
-          <div class="col-sm-10">
-            <%= f.button :submit, "Искать задачи", class: "btn btn-primary"  %>
-          </div>
-        </div>
-
-      <%end%>
-    </div>
+    <form class="mb-4" method="GET">
+      <span>название задачи:</span>
+      <input  type="text" name="title" >
+      <span>статус:</span>
+      <select class="btn btn-sm btn-outline-secondary " name="status_id" >
+        <option value="">Все</option>
+        <% IssueStatus.all.each do |status| %>
+          <option  value="<%= status.id %>"><%= "#{status.name}" %></option>
+        <% end %>
+      </select>
+      <input class="btn btn-sm btn-outline-secondary me-md-2" type="submit" value="Искать проект">
+    </form>
   <hr/>
 
      <% if @issues.present? %>

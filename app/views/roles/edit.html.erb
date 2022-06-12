@@ -1,0 +1,8 @@
+<% provide :page_title, 'Редактирование роли' %>
+<% currently_at 'Настройки' %>
+<div class="md-4">
+  <h1>Редактирование роли</h1>
+</div>
+
+<%= render 'form' %>
+<%= link_to "Назад к проекту", role_path(@role), class: 'btn btn-primary my-3' %>

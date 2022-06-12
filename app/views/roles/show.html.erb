@@ -1,0 +1,19 @@
+<% provide :page_title, 'Просмотр роли' %>
+<% currently_at 'Настройки' %>
+<div class="md-4">
+  <div class="card shadow mb-3">
+
+    <div class="card-body">
+      <h4><span class="news"><%= " Название: #{sanitize @role.name}" %></span></h4>
+
+      <div class="mt-8">
+        <%= link_to "Назад ко всем ролям", roles_path, class: 'btn btn-primary' %> |
+        <%= link_to "Редактировать", edit_role_path(@role), class: 'btn btn-primary' %> |
+        <%= link_to "Удалить", role_path(@role), data: {
+          method: :delete,
+          confirm: "Удалить роль #{@role.name} ?"
+        }, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>
+</div>

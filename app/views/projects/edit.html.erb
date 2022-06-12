@@ -1,7 +1,8 @@
 <% provide :page_title, 'Редактирование проекта' %>
-<% currently_at 'Редактирование проекта' %>
+<% currently_at 'Проекты' %>
 <div class="md-4">
   <h1>Редактирование проекта</h1>
 </div>
 
 <%= render 'form' %>
+<%= link_to "Назад к проекту", project_path(@project), class: 'btn btn-primary my-3' %>

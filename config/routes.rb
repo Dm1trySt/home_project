@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   resources :reports, only: :index
   resources :metal_content_analysis, only: :index
   get '/metal_content_analysis/:project_name', to: 'metal_content_analysis#show', as: 'metal_content_analysis_report'
+  resources :roles
 end

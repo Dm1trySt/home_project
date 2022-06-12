@@ -1,5 +1,5 @@
-<% provide :page_title, 'News edit' %>
-<% currently_at 'News edit' %>
+<% provide :page_title, 'Просмотр проекта' %>
+<% currently_at 'Проекты' %>
 <div class="md-4">
   <div class="card shadow mb-3">
     <section class="card-header">
@@ -21,11 +21,11 @@
 
       <div class="mt-8">
         <%= link_to "Задачи", project_issues_path(@project), class: 'btn btn-primary' %> |
-        <%= link_to "Назад", projects_path, class: 'btn btn-primary' %> |
+        <%= link_to "Назад ко всем проектам", projects_path, class: 'btn btn-primary' %> |
         <%= link_to "Редактировать", edit_project_path(@project), class: 'btn btn-primary' %> |
         <%= link_to "Удалить", project_path(@project), data: {
           method: :delete,
-          confirm: "Удалить новость #{@project.description} ?"
+          confirm: "Удалить проект #{@project.name} ?"
         }, class: 'btn btn-danger' %>
       </div>
     </div>

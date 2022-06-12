@@ -1,0 +1,21 @@
+<% provide :page_title, 'Роли' %>
+<% currently_at 'Настройки' %>
+<div class ="roles">
+  <div class="col-md-12">
+    <h1>Роли:</h1>
+    <%= link_to "Создать роль", new_role_path, class: 'btn btn-primary btn-lg mb-3' %>
+    <%= pagination(@pagy) %>
+
+    <form class="mb-4" method="GET">
+      <span>название роли:</span>
+      <input  type="text" name="name" >
+      <input class="btn btn-sm btn-outline-secondary me-md-2" type="submit" value="Искать роль">
+    </form>
+
+    <% if @roles.present? %>
+      <%= render partial: 'roles', collection: @roles, as: :role, locals: {role: @roles} %>
+    <%end %>
+  </div>
+
+  <%= pagination(@pagy) %>
+</div>

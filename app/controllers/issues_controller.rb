@@ -91,15 +91,15 @@ class IssuesController < ApplicationController
 
   # Поиск задач по имени
   def search_project_by_name
-    if params[:issue].present?
-      @issues = @issues.where("title LIKE ?", "%#{params[:issue][:title].titleize}%") if params[:issue][:title].present?
+    if params[:title].present?
+      @issues = @issues.where("title LIKE ?", "%#{params[:title].titleize}%")
     end
   end
 
   # Поиск проектов по статусу
   def search_project_by_status
-    if params[:issue].present?
-      @issues = @issues.where(status_id: params[:issue][:status_id]) if params[:issue][:status_id].present?
+    if params[:status_id].present?
+      @issues = @issues.where(status_id: params[:status_id])
     end
   end
 end

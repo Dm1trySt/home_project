@@ -7,7 +7,7 @@
 
   <div class="mb-3">
     <div class="col-sm-10">
-      <%= f.select :role, Role.all.collect {|role| [ role.name, role.id ] } %>
+      <%= f.select :role_id, Role.all.collect {|role_id| [ role_id.name, role_id.id ] } %>
     </div>
   </div>
 

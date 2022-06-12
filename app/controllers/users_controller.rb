@@ -60,6 +60,6 @@ class UsersController < ApplicationController
 
   # Проверка получение нужных параметров
   def user_params
-    params.require(:user).permit([:name, :admin, :status])
+    params.require(:user).permit([:name, :admin, :active, :role_id]) if current_user.admin?
   end
 end

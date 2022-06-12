@@ -75,8 +75,8 @@ class ProjectsController < ApplicationController
 
   # Поиск проектов по имени
   def search_project_by_name
-    if params[:project_name]
-      @projects = @projects.where("name LIKE ?", "%#{params[:project_name].titleize}%")
+    if params[:name]
+      @projects = @projects.where("name LIKE ?", "%#{params[:name].titleize}%")
     end
   end
 

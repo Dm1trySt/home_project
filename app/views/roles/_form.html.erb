@@ -1,0 +1,10 @@
+<%= simple_form_for @role do |f| %>
+  <div class="mb-3">
+    <div class="col-sm-10">
+      <%= f.input :name %>
+    </div>
+  </div>
+
+  <%= f.button :submit, "Сохранить", class: 'btn btn-primary'%>
+<% end %>
+
