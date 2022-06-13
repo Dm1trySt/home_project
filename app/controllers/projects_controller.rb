@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :find_project!, only: %i[show edit update destroy]
+  before_action :authorize_project!
+  after_action :verify_authorized
   include ApplicationHelper
 
   def index
@@ -85,5 +87,9 @@ class ProjectsController < ApplicationController
     if params[:status_id].present?
       @projects = @projects.where(project_status_id: params[:status_id])
     end
+  end
+
+  def authorize_project!
+    authorize(@project || Project)
   end
 end

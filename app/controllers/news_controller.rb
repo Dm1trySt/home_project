@@ -1,6 +1,9 @@
 class NewsController < ApplicationController
 
   before_action :find_news!, only: %i[show edit update destroy]
+  before_action :authorize_news!
+  after_action :verify_authorized
+
   include ApplicationHelper
 
   def index
@@ -76,5 +79,9 @@ class NewsController < ApplicationController
     if params[:title]
       @news = @news.where("title LIKE ?", "%#{params[:title].titleize}%")
     end
+  end
+
+  def authorize_news!
+    authorize(@news || News)
   end
 end

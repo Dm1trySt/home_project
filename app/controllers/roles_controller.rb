@@ -1,5 +1,8 @@
 class RolesController < ApplicationController
   before_action :find_roles!, only: %i[show edit update destroy]
+  before_action :authorize_role!
+  after_action :verify_authorized
+
   include ApplicationHelper
 
   def index
@@ -75,5 +78,10 @@ class RolesController < ApplicationController
   # Поиск текущей нововсти
   def find_roles!
     @role = Role.find(params[:id])
+  end
+
+
+  def authorize_role!
+    authorize(@role || Role)
   end
 end

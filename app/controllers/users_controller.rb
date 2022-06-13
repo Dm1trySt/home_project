@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   #before_action :require_admin
   include ApplicationHelper
 
+  before_action :authorize_user!
+  after_action :verify_authorized
   before_action :find_user!, only: %i[edit update destroy]
 
   def index
@@ -60,6 +62,11 @@ class UsersController < ApplicationController
 
   # Проверка получение нужных параметров
   def user_params
-    params.require(:user).permit([:name, :admin, :active, :role_id]) if current_user.admin?
+    params.require(:user).permit([:name, :admin, :active, :role_id])
   end
+
+  def authorize_user!
+    authorize(@user || User)
+  end
+
 end

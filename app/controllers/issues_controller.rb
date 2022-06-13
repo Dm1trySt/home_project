@@ -1,5 +1,7 @@
 class IssuesController < ApplicationController
   before_action :find_issue!, only: %i[show edit update destroy]
+  before_action :authorize_issue!
+  after_action :verify_authorized
   include ApplicationHelper
 
   def index
@@ -101,5 +103,9 @@ class IssuesController < ApplicationController
     if params[:status_id].present?
       @issues = @issues.where(status_id: params[:status_id])
     end
+  end
+
+  def authorize_issue!
+    authorize(@issue || Issue)
   end
 end

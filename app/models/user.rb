@@ -19,8 +19,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # Активные пользователи
   def self.active_user
     User.all.where(status: 1)
+  end
+
+  # Текущий пользователь - автор?
+  def author?(obj)
+    obj.user == self
   end
 
   # хэш-массив активных пользователей вида [name: имя + email,id: id]

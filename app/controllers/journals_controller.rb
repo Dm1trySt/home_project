@@ -1,6 +1,8 @@
 class JournalsController < ApplicationController
   before_action :set_journal!, except: [:new, :create]
   before_action :set_issue!
+  before_action :authorize_journal!
+  after_action :verify_authorized
 
   def new
     @journal = @issue.journals.build
@@ -61,5 +63,9 @@ class JournalsController < ApplicationController
   # Поиск текущей задачи
   def set_issue!
     @issue = params[:issue_id].present? ? (Issue.find params[:issue_id]) : @journal.issue
+  end
+
+  def authorize_journal!
+    authorize(@journal || Journal)
   end
 end
