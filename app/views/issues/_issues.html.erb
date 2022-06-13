@@ -2,6 +2,7 @@
   <section class="card-header">
     <%= image_tag user_avatar( issue.author, 40), class: 'rounded'%>
     <%= issue.author.name_or_email %>
+    <%= "(#{issue.author.email})" if issue.author.name.present? %>
     <time  datetime="<%issue.formatted_created_at %>">
       <%=issue.formatted_created_at %>
     </time>

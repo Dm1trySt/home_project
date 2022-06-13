@@ -3,8 +3,10 @@ class RolesController < ApplicationController
   include ApplicationHelper
 
   def index
-    @pagy, @roles = pagy(Role.all, items: 10)
+
+    @roles = Role.all
     search_roles_by_name
+    @pagy, @roles = pagy(@roles, items: 10)
     # @roles = @roles.decorate
   end
 

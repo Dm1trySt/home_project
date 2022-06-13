@@ -5,6 +5,7 @@
     <section class="card-header">
       <%= image_tag user_avatar(@news.user, 40), class: 'rounded' %>
       <%= @news.user.name_or_email %>
+      <%= "(#{@news.user.email})" if @news.user.name.present? %>
       <time  datetime="<%@news.formatted_created_at %>">
         <%= @news.formatted_created_at %>
       </time>

@@ -5,6 +5,7 @@
     <section class="card-header">
       <%= image_tag user_avatar( @issue.author, 40), class: 'rounded'%>
       <%= @issue.author.name_or_email %>
+      <%= "(#{@issue.author.email})" if @issue.author.name.present? %>
       <time  datetime="<%@issue.formatted_created_at %>">
         <%= @issue.formatted_created_at %>
       </time>
@@ -21,6 +22,7 @@
           <%= " назначен:"%>
           <%= image_tag user_avatar(@issue.assigned_to, 40), class: 'rounded' %>
           <%=" #{@issue.assigned_to.name_or_email}"%>
+          <%= "(#{@issue.assigned_to.email})" if @issue.assigned_to.name.present? %>
         </span>
         <hr/>
         <p>Описание:</p>
@@ -47,7 +49,8 @@
       <section class="card-header">
         <%= image_tag user_avatar( journal.user, 40), class: 'rounded'%>
         <%= journal.user.name_or_email %>
-        <time  datetime="<%journal.formatted_created_at %>">
+        <%= "(#{journal.user.email})" if journal.user.name.present? %>
+        <time datetime="<%journal.formatted_created_at %>">
           <%= journal.formatted_created_at %>
         </time>
 
@@ -67,6 +70,3 @@
   <% end %>
   <%= pagination(@pagy) %>
 <%end %>
-
-
-
