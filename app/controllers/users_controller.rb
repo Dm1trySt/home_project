@@ -9,12 +9,13 @@ class UsersController < ApplicationController
   def index
     # Варианты ответов на разные форматы
     respond_to do |format|
+      @users = User.all
       # Вариант ответа на html
       format.html do
-        @pagy, @users = pagy User.all
+        @pagy, @users = pagy(@users, items: 15)
       end
-      # Вариант ответа на формат zip
-      format.zip { respond_with_zipped_users }
+      # Вариант ответа на формат xlsx
+      format.xlsx {render xlsx: 'user',filename: "users.xlsx"}
     end
   end
 
@@ -36,24 +37,6 @@ class UsersController < ApplicationController
   end
 
   private
-  def respond_with_zipped_users
-    # создание временного архива для передачи данных
-    compressed_filestream = Zip::OutputStream.write_buffer do |zos|
-      # Создание архива для каждого пользователя
-      users = User.all
-      # Формат, который будет храниться в архиве
-      zos.put_next_entry "users.xlsx"
-      # Запись данных
-      zos.print render_to_string(
-                  handlers: [:axlsx], formats: [:xlsx], template: 'users/user', locals:{users: users}
-                )
-
-    end
-    # Возврат в начало данных
-    compressed_filestream.rewind
-
-    send_data compressed_filestream.read, filename: 'users.zip'
-  end
 
   def find_user!
     @user = User.find(params[:id])
